@@ -1,0 +1,23 @@
+1: procedure INITIALIZENODEEMBEDDINGS(graph, embedding_dim)
+2:     for each node in graph do
+3:         node.embedding ← RandomVector(embedding_dim)
+4:         if node has a nested graph then
+5:             INITIALIZENODEEMBEDDINGS(node.nested_graph, embedding_dim)
+
+6: procedure COMPUTENODEEMBEDDINGS(graph, node_function, combine_function, aggregate_function)
+7:     for each node in graph do
+8:         if node has a nested graph then
+9:             COMPUTENODEEMBEDDINGS(node.nested_graph, node_function, combine_function, aggregate_function)
+10:        nested_embedding ← ZeroVector(node.embedding.size) if node has no nested graph else AGGREGATEGRAPHEMBEDDING(node.nested_graph, aggregate_function)
+11:        current_embedding ← NODEFUNCTION(node.features)
+12:        node.embedding ← COMBINEFUNCTION(current_embedding, nested_embedding)
+
+13: function AGGREGATEGRAPHEMBEDDING(graph, aggregate_function)
+14:     embeddings ← [node.embedding for node in graph]
+15:     graph_embedding ← AGGREGATEFUNCTION(embeddings)
+16:     return graph_embedding
+
+# Start the algorithm
+17: top_level_graph ← LoadGraph(input_data)
+18: INITIALIZENODEEMBEDDINGS(top_level_graph, embedding_dim)
+19: COMPUTENODEEMBEDDINGS(top_level_graph, node_function, combine_function, aggregate_function)
