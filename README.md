@@ -26,6 +26,22 @@ The versatility of Recursive_GNN makes it a powerful tool across a wide array of
 
 Recursive_GNN works by employing a novel recursive approach that computes embeddings for nodes in a graph and its sub-graphs. The algorithm is initialized by assigning random embeddings to the nodes. Then, for each node, if it has a nested graph, the same computation is performed on the nested graph recursively. The current node's embedding and the aggregate embedding of the nested graph (if present) are then combined to form the final embedding for the node. The recursion unravels the nested graph hierarchy, ensuring that all levels of complexity are addressed and captured in the final model.
 
+### Algorithm
+Here is a high-level pseudocode representation of the Recursive_GNN algorithm:
+
+```
+1. function RECURSIVE_GNN(graph G):
+2.    for each node v in G do
+3.        if v has a nested graph G' then
+4.            embedding_G' = RECURSIVE_GNN(G')
+5.        else
+6.            embedding_G' = None
+7.        end if
+8.        embedding_v = COMBINE(node_function(v), AGGREGATE({embedding_u for u in Neighbors(v)}), embedding_G')
+9.    end for
+10.   return AGGREGATE({embedding_v for v in G})
+```
+
 ## What
 
 This repository contains the implementation of Recursive_GNN. Here's a breakdown of the contents:
@@ -71,3 +87,5 @@ python examples/example.py
 We invite researchers and developers to explore this repository, use Recursive_GNN in their projects, and join us in improving and expanding its capabilities.
 
 ```
+
+
