@@ -86,6 +86,18 @@ python examples/example.py
 
 We invite researchers and developers to explore this repository, use Recursive_GNN in their projects, and join us in improving and expanding its capabilities.
 
+
+## Citation
+
+If you use Recursive_GNN in your research, please use the following BibTeX entry.
+
+```bibtex
+@misc{Andersson2023,
+  author = {Samuel M. Andersson},
+  title = {Recursive_GNN: A Novel Recursive Approach for Graph Embedding},
+  year = {2023},
+  publisher = {GitHub},
+  journal = {GitHub Repository},
+  howpublished = {\url{https://github.com/username/Recursive_GNN}},
+}
 ```
-
-
